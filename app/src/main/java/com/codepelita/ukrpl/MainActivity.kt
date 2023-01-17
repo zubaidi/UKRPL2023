@@ -1,9 +1,11 @@
 package com.codepelita.ukrpl
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.codepelita.ukrpl.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -42,8 +44,17 @@ class MainActivity : AppCompatActivity() {
                 var bbData = bb.toDouble()
                 var tbData = tb.toDouble()
                 hasil = 665 + (13.75 * bbData) + (5.003 * tbData) - (6.75 * usiaData)
-                binding.txtHasil.text = hasil.toString()
-                Toast.makeText(this, "${usiaData}", Toast.LENGTH_SHORT).show()
+                var alertDialog = AlertDialog.Builder(this)
+                alertDialog.setMessage("Anda seorang Laki-Laki dengan usia ${usia}, Tinggi Badan ${tb}cm, dan Berat Badan ${bb}kg adalah ${hasil} kal")
+                    .setPositiveButton("Simpan Data", DialogInterface.OnClickListener{
+                        dialogInterface, i -> finish()
+                    })
+                    .setNegativeButton("Batal", DialogInterface.OnClickListener{
+                            dialogInterface, i -> dialogInterface.cancel()
+                    })
+                var alert = alertDialog.create()
+                alert.setTitle("Hasil Perhitungan")
+                alert.show()
             }
             Toast.makeText(this, "hasil: ${ usia }", Toast.LENGTH_SHORT).show()
         } else {
@@ -51,8 +62,6 @@ class MainActivity : AppCompatActivity() {
                 var usiaData = usia.toDouble()
                 var bbData = bb.toDouble()
                 var tbData = tb.toDouble()
-                hasil = 655 + (9.563 * bbData) + (1.850 * tbData) - (4.676 * usiaData)
-                binding.txtHasil.text = hasil.toString()
             }
 
         }
