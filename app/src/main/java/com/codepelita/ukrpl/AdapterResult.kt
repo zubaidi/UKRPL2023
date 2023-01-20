@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AdapterResult(private val list: MutableList<Data>) : RecyclerView.Adapter<AdapterResult.ViewHolder>() {
+class AdapterResult(val list: MutableList<Data>) : RecyclerView.Adapter<AdapterResult.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         var jk = itemView.findViewById<TextView>(R.id.tvJenisKelamin)
         var usia = itemView.findViewById<TextView>(R.id.tvUsia)
